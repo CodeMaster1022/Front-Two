@@ -15,7 +15,7 @@ export default function AppLayout() {
   const isMobile = useMobile()
 
   useEffect(() => {
-    dispatch(fetchChatHistory())
+    dispatch(fetchChatHistory(0))
   }, [dispatch])
 
   useEffect(() => {

@@ -58,7 +58,7 @@ const mockMessages = [
     created_at: "2025-05-15T07:10:22",
   },
 ]
-const API_BASE_URL = "http://localhost:3000/api"
+const API_BASE_URL = "http://localhost:8000/api"
 // Mock API service
 export const chatApi = {
   sendQuestion: async (question: any) => {
@@ -84,32 +84,23 @@ export const chatApi = {
   },
   getResponse: async (taskId: string) => {
     try {
-      const pollForResult = async (): Promise<any> => {
-        const response = await fetch(`${API_BASE_URL}/result/${taskId}`);
-        
-        if (!response.ok) {
-          throw new Error(`Polling request failed with status ${response.status}`);
-        }
-        
-        const result = await response.json();
-        
-        if (result.status === "completed") {
-          return result; // Return the final result
-        } else if (result.status === "failed") {
-          throw new Error(result.error || "Task failed");
-        } else {
-          // If still processing, wait and try again
-          await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
-          return await pollForResult(); // Recursive call
-        }
-      };
+      const response = await fetch(`${API_BASE_URL}/result/${taskId}`);
       
-      return await pollForResult();
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+      
+      return await response.json();
     } catch (error) {
-      console.error("Failed to get response:", error);
-      throw error;
+      console.error('Error fetching inventory data:', error);
+      return {
+        status: 'completed',
+        error: error instanceof Error ? error.message : 'Unknown error occurred',
+        result: undefined
+      };
     }
   },
+  
 
   getChatHistory: async (userId: number) => {
     try {

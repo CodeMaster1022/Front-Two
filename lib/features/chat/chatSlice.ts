@@ -96,32 +96,52 @@ export const pollForResponse = createAsyncThunk(
 )
 
 export const fetchChatHistory = createAsyncThunk(
-  "chat/fetchChatHistory", 
+  "chat/fetchChatHistory",
   async (userId: number) => {
     try {
-      const history = await chatApi.getChatHistory(userId)
-
+      const history = await chatApi.getChatHistory(userId);
+      
       // Group messages by thread_id
-      const threads: ChatThread[] = []
-
-      // For demo purposes, create a thread for each message
-      history.forEach((message:any) => {
-        const threadId = message.thread_id || uuidv4()
-        threads.push({
-          id: threadId,
-          title: message.question,
-          messages: [message],
-          lastMessage: message.question,
-          updatedAt: message.created_at,
-        })
-      })
-
-      return threads
+      const threadMap: Record<string, ChatThread> = {};
+      
+      history.forEach((message: any) => {
+        const threadId = message.thread_id || uuidv4();
+        
+        if (!threadMap[threadId]) {
+          // Create a new thread if it doesn't exist
+          threadMap[threadId] = {
+            id: threadId,
+            title: message.question, // Use first message as title
+            messages: [],
+            lastMessage: "",
+            updatedAt: new Date(0).toISOString(), // Will be updated below
+          };
+        }
+        
+        // Add message to the thread
+        threadMap[threadId].messages.push(message);
+        
+        // Update thread metadata if this message is newer
+        const messageDate = new Date(message.created_at);
+        const threadDate = new Date(threadMap[threadId].updatedAt || 0);
+        
+        if (messageDate > threadDate) {
+          threadMap[threadId].lastMessage = message.question;
+          threadMap[threadId].updatedAt = message.created_at;
+        }
+      });
+      
+      // Sort threads by updatedAt (newest first)
+      const threads = Object.values(threadMap).sort((a, b) => 
+        new Date(b.updatedAt || 0).getTime() - new Date(a.updatedAt || 0).getTime()
+      );
+      
+      return threads;
     } catch (error) {
-      throw error
+      throw error;
     }
   }
-)
+);
 
 const chatSlice = createSlice({
   name: "chat",
