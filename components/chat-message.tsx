@@ -54,6 +54,7 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
       {/* User question */}
       <div className="flex items-start gap-3">
         <Avatar className="h-8 w-8 border">
+        <AvatarImage src="/user.png?height=32&width=36" />
           <AvatarFallback className="bg-primary text-primary-foreground">
             {message.user_id === 0 ? "U" : "U"}
           </AvatarFallback>
@@ -71,10 +72,9 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
       {message.result && (
         <div className="flex items-start gap-3">
           <Avatar className="h-8 w-8 border">
-            <AvatarImage src="/placeholder.svg?height=32&width=32" />
+            <AvatarImage src="/assistant.png?height=32&width=36" />
             <AvatarFallback className="bg-secondary text-white">AI</AvatarFallback>
           </Avatar>
-
           <div className="flex-1 space-y-4">
             <div>
               <div className="flex items-center gap-2">
@@ -160,7 +160,7 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
                       <TableBody>
                         {message.result.result.results.map((row, i) => (
                           <TableRow key={i} className="hover:bg-muted/30">
-                            {message.result.result.columns.map((column, j) => (
+                            {message.result?.result?.columns.map((column, j) => (
                               <TableCell
                                 key={j}
                                 className={cn(
