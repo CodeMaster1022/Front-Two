@@ -63,7 +63,7 @@ const API_BASE_URL = "http://localhost:8000/api"
 export const chatApi = {
   sendQuestion: async (question: any) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/query`, {
+      const response = await fetch(`${API_BASE_URL}/query/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export const chatApi = {
   },
   getResponse: async (taskId: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/result/${taskId}`);
+      const response = await fetch(`${API_BASE_URL}/result/${taskId}/`);
       
       if (!response.ok) {
         throw new Error(`API error: ${response.status}`);
@@ -104,7 +104,7 @@ export const chatApi = {
 
   getChatHistory: async (userId: number) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/chat-history`, {
+      const response = await fetch(`${API_BASE_URL}/chat-history/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
