@@ -61,7 +61,7 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
         </Avatar>
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <span className="font-semibold">Sarah</span>
+            <span className="font-semibold p-2">User</span>
             <span className="text-xs text-muted-foreground">{formattedTime}</span>
           </div>
           <p className="mt-1">{message.question}</p>
@@ -78,27 +78,27 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
           <div className="flex-1 space-y-4">
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-semibold">Assistant</span>
+                <span className="font-semibold p-2">Assistant</span>
                 <span className="text-xs text-muted-foreground">{formattedTime}</span>
               </div>
 
               {/* Analysis dropdown */}
               <div className="mt-1">
-                <Button variant="outline" size="sm" className="mb-2 text-sm font-medium text-muted-foreground">
+                {/* <Button variant="outline" size="sm" className="mb-2 text-sm font-medium text-muted-foreground">
                   Analysis process
                   <ChevronDown className="ml-1 h-4 w-4" />
-                </Button>
+                </Button> */}
 
-                <p className="mb-4">
+                {/* <p className="mb-4">
                   {message.result.sql.includes("COUNT")
                     ? `There are ${message.result.result.results[0]?.available_vehicles || 0} vehicles currently available.`
                     : `Several items show significant results in the query. The data reveals important patterns that may require attention.`}
-                </p>
+                </p> */}
               </div>
 
               {/* Results Table */}
               <Card className="overflow-hidden border rounded-md">
-                <div className="flex items-center justify-between p-3 bg-muted/50 border-b">
+                <div className="flex items-center justify-between px-4 py-2 bg-muted/50 border-b">
                   <div className="font-medium">Results</div>
                   <div className="flex items-center gap-2">
                     {/* Export CSV Button */}
@@ -147,12 +147,12 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
                             <TableHead
                               key={i}
                               className={cn(
-                                "bg-muted/30 text-xs uppercase tracking-wider font-medium text-muted-foreground",
+                                "bg-muted/30 text-xs uppercase tracking-wider font-medium text-gray-800 text-muted-foreground",
                                 i === 0 && "sticky left-0 bg-muted/30 z-10",
                               )}
                             >
                               {column}
-                              {i === 0 && <span className="ml-1 text-muted-foreground">123</span>}
+                              {i === 0 && <span className="ml-1 text-muted-foreground"></span>}
                             </TableHead>
                           ))}
                         </TableRow>
@@ -181,11 +181,11 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
                 <div className="p-3 text-xs text-muted-foreground border-t bg-muted/30 flex justify-between items-center">
                   <div>
                     {message.result.result.row_count} items
-                    <span className="mx-1 text-muted-foreground">123</span>
+                    <span className="mx-1 text-muted-foreground"></span>
                   </div>
                   <div>
                     {message.result.result.row_count} items
-                    <span className="mx-1 text-muted-foreground">123</span>
+                    <span className="mx-1 text-muted-foreground"></span>
                   </div>
                 </div>
               </Card>
