@@ -85,7 +85,7 @@ export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
         {/* Header */}
         <div className="flex h-14 items-center border-b px-4">
           <div className="flex items-center gap-2">
-            <Database className="h-6 w-6 text-primary" />
+            <Database className="h-6 w-6 text-black" />
             <h1 className="text-lg font-semibold">SQL Assistant</h1>
           </div>
           <Button variant="ghost" size="icon" className="ml-auto lg:hidden" onClick={toggleSidebar}>
@@ -95,7 +95,7 @@ export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
 
         {/* New Chat Button */}
         <div className="p-4">
-          <Button className="w-full justify-start gap-2" onClick={handleNewChat}>
+          <Button className="w-full justify-start gap-2 bg-black" onClick={handleNewChat}>
             <Plus className="h-4 w-4" />
             New Chat
           </Button>

@@ -16,13 +16,13 @@ export default function EmptyState() {
     <div className="flex h-full flex-col items-center justify-center">
       <div className="flex flex-col items-center justify-center space-y-4 text-center">
         <div className="rounded-full bg-primary/10 p-4">
-          <Database className="h-10 w-10 text-primary" />
+          <Database className="h-10 w-10 text-black" />
         </div>
         <h2 className="text-2xl font-bold">SQL Assistant</h2>
         <p className="max-w-md text-muted-foreground">
           Ask questions about your data in natural language and get SQL queries and results instantly.
         </p>
-        <Button onClick={handleNewChat} className="mt-2 gap-2">
+        <Button onClick={handleNewChat} className="mt-2 gap-2 bg-black">
           <Plus className="h-4 w-4" />
           New Chat
         </Button>
