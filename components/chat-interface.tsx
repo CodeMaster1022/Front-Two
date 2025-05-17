@@ -78,7 +78,7 @@ export default function ChatInterface() {
     <div className="flex flex-col h-[calc(100vh-3.5rem)] border rounded-lg overflow-hidden bg-white">
       <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
         {messages.map((message, index) => (
-          <ChatMessage key={index} message={message} onSuggestionClick={handleSuggestionClick} />
+          <ChatMessage key={message.id || index} message={message} onSuggestionClick={handleSuggestionClick} />
         ))}
 
         {isLoading && (
