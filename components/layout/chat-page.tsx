@@ -6,7 +6,7 @@ import EmptyState from "@/components/empty-state"
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
-
+import UserAvatar from "../user-avatar"
 interface ChatPageProps {
   isOpen: boolean
   toggleSidebar: () => void
@@ -38,6 +38,7 @@ export default function ChatPage({ isOpen, toggleSidebar }: ChatPageProps) {
             {activeThread ? truncateTitle(activeThread.title || "New Conversation") : "SQL Assistant"}
           </h1>
         </div>
+        <UserAvatar />
       </header>
 
       {/* Main Content */}
