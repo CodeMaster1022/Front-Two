@@ -110,13 +110,14 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
       {/* User question */}
       <div className="flex items-start gap-3">
         <Avatar className="h-8 w-8 border">
+          <AvatarImage src="/assistant.png?height=32&width=32" />
           <AvatarFallback className="bg-primary text-primary-foreground">
             {message.user_id === 0 ? "U" : "U"}
           </AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <span className="font-semibold">Sarah</span>
+            <span className="font-semibold">User</span>
             <span className="text-xs text-muted-foreground">{formattedTime}</span>
           </div>
           <p className="mt-1">{message.question}</p>
@@ -127,14 +128,14 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
       {message.result && (
         <div className="flex items-start gap-3">
           <Avatar className="h-8 w-8 border">
-            <AvatarImage src="/placeholder.svg?height=32&width=32" />
+            <AvatarImage src="/user.png?height=32&width=32" />
             <AvatarFallback className="bg-blue-500 text-white">AI</AvatarFallback>
           </Avatar>
 
           <div className="flex-1 space-y-4">
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-semibold">Lumi</span>
+                <span className="font-semibold">Assistant</span>
                 <span className="text-xs text-muted-foreground">{formattedTime}</span>
               </div>
 
@@ -147,7 +148,7 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
 
                 <p className="mb-4">
                   {message.result.sql.includes("COUNT")
-                    ? `There are ${message.result.result.results[0]?.available_vehicles || 0} vehicles currently available.`
+                    ? `There are ${message.result.result.results[0]?.available_vehicles || 0}.`
                     : `Several items show significant results in the query. The data reveals important patterns that may require attention.`}
                 </p>
               </div>
