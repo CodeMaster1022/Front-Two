@@ -58,7 +58,7 @@ const mockMessages = [
     created_at: "2025-05-15T07:10:22",
   },
 ]
-const API_BASE_URL = "http://localhost:8000/api"
+const API_BASE_URL = "http://3.28.76.238:8000/api"
 // Mock API service
 export const chatApi = {
   sendQuestion: async (question: any) => {
