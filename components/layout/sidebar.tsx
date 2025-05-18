@@ -159,10 +159,7 @@ export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
                           </p>
                         )}
                       </div>
-                    </div>
-
-                    {/* Thread actions dropdown - Separate from the thread button */}
-                    <div className="flex-shrink-0 p-1">
+                      <div className="flex-shrink-0 p-1">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
@@ -199,6 +196,7 @@ export default function Sidebar({ isOpen, toggleSidebar }: SidebarProps) {
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
+                    </div>
                     </div>
                   </div>
                 )}
