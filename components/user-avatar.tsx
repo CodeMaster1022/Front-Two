@@ -36,7 +36,7 @@ export default function UserAvatar() {
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9 border-2 border-primary/10">
             <AvatarImage src={""} alt={user?.name || ""} />
-            <AvatarFallback className="bg-primary text-primary-foreground">
+            <AvatarFallback className="bg-black text-primary-foreground">
               {user?.name
                 ? user.name
                     .split(" ")

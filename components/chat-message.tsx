@@ -148,7 +148,7 @@ export default function ChatMessage({ message, onSuggestionClick }: ChatMessageP
 
                 <p className="mb-4">
                   {message.result.sql.includes("COUNT")
-                    ? `There are ${message.result.result.results[0]?.available_vehicles || 0}.`
+                    ? `Please check this result.`
                     : `Several items show significant results in the query. The data reveals important patterns that may require attention.`}
                 </p>
               </div>
